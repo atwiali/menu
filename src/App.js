@@ -10,7 +10,6 @@ import { useState } from "react";
 const App = () => {
   const [itemsData, setitemsData] = useState(items);
   const allCategory = ["ALL", ...new Set(items.map((i) => i.category))];
-  console.log(allCategory);
 
   //Filter by category
   const filterbyCategory = (cat) => {
@@ -20,18 +19,20 @@ const App = () => {
       const newArr = items.filter((item) => item.category === cat);
       setitemsData(newArr);
     }
-  }
-  //Filter by search 
+  };
+  //Filter by search
   const filterbysearch = (word) => {
-    if (word !=="") {
-    
-      const newArr = items.filter((item) => item.title === word);
-      setitemsData(newArr);
+    if (word === "") {
+      return;
     }
-  }
+
+    const newArr = items.filter((item) => item.title.trim() === word.trim());
+    console.log(newArr);
+    setitemsData(newArr);
+  };
   return (
     <div>
-      <NavBar />
+      <NavBar filterbysearch={filterbysearch} />
       <Container>
         <Header />
         <Category
