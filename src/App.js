@@ -26,7 +26,7 @@ const App = () => {
       return;
     }
 
-    const newArr = items.filter((item) => item.title.trim() === word.trim());
+    const newArr = items.filter((item) => item.title.toLowerCase().trim() === word.toLowerCase().trim());
     console.log(newArr);
     setitemsData(newArr);
   };
